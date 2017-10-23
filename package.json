@@ -1,0 +1,21 @@
+{
+  "name": "meaco",
+  "version": "1.0.0",
+  "description": "A Coroutine library supporting Promise, JarvisEmitter and Callbacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "jarvis-emitter": "^1.0.0"
+  },
+  "author": "mce",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mceSystems/meaco"
+  }
+}

@@ -27,7 +27,9 @@ function meaco(genFunction) {
 		const done = nextYield.done;
 		let promise = nextYield.value;
 		let fn = "then";
+		let catchFn = "";
 		const errorFn = "error";
+
 		if (!promise || done) {
 			promiseRet.callDone(promise);
 			return;
@@ -38,12 +40,16 @@ function meaco(genFunction) {
 		} else if (promise.constructor.name === "JarvisEmitter" || (promise instanceof JarvisEmitter)) {
 			// this will not work in case promise is and instance of JarvisEmitter and code is minified
 			fn = "done";
+			catchFn = "catch";
 		}
 
 		if (promise[fn]) {
 			promise[fn](nextCall.bind(this, false), nextCall.bind(this, true));
 			if (promise[errorFn]) {
 				promise[errorFn](nextCall.bind(this, true));
+			}
+			if (catchFn && promise[catchFn]) {
+				promise[catchFn](promiseRet.callCatch.bind(this));
 			}
 			return;
 		}

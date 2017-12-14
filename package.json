@@ -1,6 +1,6 @@
 {
   "name": "meaco",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Coroutine library supporting Promise, JarvisEmitter and Callbacks",
   "main": "index.js",
   "scripts": {

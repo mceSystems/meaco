@@ -99,4 +99,24 @@ describe("meaco", () => {
 				done(new Error("Reached done though an exception should have been caught"));
 			});
 	});
+
+	it("Testing arguments passing, should call done interface with sum of passed numbers", (done) => {
+		const numbers = [1,2,3,4,5];
+		const expectedSum = numbers.reduce((a,b) => {return a + b}, 0);
+		meaco(function* (...numbers) {
+			return numbers.reduce((a,b) => {return a + b}, 0);
+		}, ...numbers)
+			.catch((err) => {
+				done(err);
+			})
+			.error((err) => {
+				done(err);
+			})
+			.done((sum) => {
+				if(expectedSum === sum){
+					return done();
+				}
+				done(new Error(`Expected sumc ${expectedSum} but got sum=${sum}`));
+			});
+	});
 });

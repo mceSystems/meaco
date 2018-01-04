@@ -1,12 +1,9 @@
 const JarvisEmitter = require("jarvis-emitter");
 
-function meaco(genFunction) {
+function meaco(genFunction, ...args) {
 	const promiseRet = new JarvisEmitter();
 	let rejected = false;
-	const caller = genFunction((err) => {
-		rejected = true;
-		promiseRet.callError(err);
-	});
+	const caller = genFunction(...args);
 	function nextCall(lastWasError, ...args) {
 		if (lastWasError) {
 			promiseRet.callError(...args);

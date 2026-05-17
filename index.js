@@ -35,13 +35,19 @@ function meaco(genFunction, ...args) {
 		if (typeof promise === "object" && promise.promise && promise.fn) {
 			({ promise, fn } = promise);
 		} else if (
-			promise.constructor.name === "JarvisEmitter"
-			|| (promise instanceof JarvisEmitter)
-			|| (typeof promise.done === "function" && typeof promise.callDone === "function")
+			typeof promise === "object"
+			&& promise.constructor
+			&& (
+				promise.constructor.name === "JarvisEmitter"
+				|| (promise instanceof JarvisEmitter)
+				|| (typeof promise.done === "function" && typeof promise.callDone === "function")
+			)
 		) {
 			// Duck-type check covers JarvisEmitter subclasses (e.g. NPPHandler) and
 			// cross-version duplicates where `instanceof` fails because two copies of
 			// jarvis-emitter coexist in the resolved tree (different class identities).
+			// `promise.constructor` guard avoids a TypeError on null-prototype yields
+			// (e.g. Object.create(null)); such values fall through to callDone below.
 			fn = "done";
 			catchFn = "catch";
 		}

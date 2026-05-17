@@ -7,7 +7,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "jarvis-emitter": "^3.0.2"
+    "jarvis-emitter": "^2.0.4 || ^3.0.2"
   },
   "author": "mce",
   "devDependencies": {

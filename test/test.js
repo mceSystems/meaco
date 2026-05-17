@@ -134,7 +134,7 @@ describe("meaco", () => {
 	});
 
 	it("Testing duck-type detection, error path on emitter-like object", (done) => {
-		// Verifies the error registerer is wired up on duck-typed objects so a
+		// Verifies the error handler is wired up on duck-typed objects so a
 		// rejection propagates back through the coroutine.
 		const makeEmitterLike = () => {
 			let errorCb = null;

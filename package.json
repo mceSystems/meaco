@@ -6,13 +6,12 @@
   "scripts": {
     "test": "mocha"
   },
-  "peerDependencies": {
+  "dependencies": {
     "jarvis-emitter": "^3.0.2"
   },
   "author": "mce",
   "devDependencies": {
     "chai": "^4.1.2",
-    "jarvis-emitter": "^3.0.2",
     "mocha": "^4.0.1"
   },
   "repository": {
